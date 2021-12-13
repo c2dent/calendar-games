@@ -22,8 +22,6 @@
                     <div class="col-5"><a class="btn btn-info left" href="{% url 'games:index' %}?{{ prev_month }}">Предедущий месяц</a></div>
                     <div class="col-5"><a class="btn btn-info right" href="{% url 'games:index' %}?{{ next_month }}">Следующий месяц</a></div>
                 </div>
-
-
             </div>
         </div>
         <div style="height:50px"></div>
@@ -42,7 +40,7 @@
                         {% for item in games %}
                             <th scope="row">{{ item.title }}</th>
                             <td>{{ item.price }} руб</td>
-                            <td>{{ item.datetime }}</td>
+                            <td>{{ item.datetime.day }}.{{ item.datetime.month }}.{{ item.datetime.year }}  {{ item.datetime.hour }}:{{ item.datetime.minute }}</td>
                             <td>{{ item.status }}</td>
                         {% endfor %}
                     </tr>
