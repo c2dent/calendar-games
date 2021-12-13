@@ -18,7 +18,7 @@ class GamesView(generic.ListView):
         context['calendar'] = mark_safe(html_calendar)
         context['prev_month'] = prev_month(date)
         context['next_month'] = next_month(date)
-        context['games'] = Game.objects.all().filter(datetime__year=date.year, datetime__month=date.month, datetime__day=date.day)
+        context['games'] = Game.objects.all().filter(datetime__year=date.year, datetime__month=date.month, datetime__day=date.day).order_by('datetime')
         return context
 
 
