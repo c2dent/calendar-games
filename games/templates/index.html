@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" class="h-100">
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -12,22 +12,43 @@
 
     <title>Document</title>
 </head>
-<body>
-    <div class="clearfix">
-	    <a class="btn btn-info left" href="{% url 'games:index' %}?{{ prev_month }}"> предедущий месяц </a>
-	    <a class="btn btn-info right" href="{% url 'games:index' %}?{{ next_month }}"> следующий месяц </a>
-        <div id="calendar">
-            {{ calendar }}
+<body class="h-100">
+    <div class="container bg-light h-100">
+        <div class="row justify-content-md-center">
+            <div class="calendar col-md-auto">
+                {{ calendar }}
+                <br>
+                <div class="row justify-content-between">
+                    <div class="col-5"><a class="btn btn-info left" href="{% url 'games:index' %}?{{ prev_month }}">Предедущий месяц</a></div>
+                    <div class="col-5"><a class="btn btn-info right" href="{% url 'games:index' %}?{{ next_month }}">Следующий месяц</a></div>
+                </div>
+
+
+            </div>
         </div>
-    </div>
-    <div>
-        <ul>
-            {% for item in games %}
-                <li>
-                    {{ item }}
-                </li>
-            {% endfor %}
-        </ul>
+        <div style="height:50px"></div>
+        <div class="row justify-content-center">
+            <table class="table w-75">
+                <thead>
+                    <tr>
+                        <th scope="col">Названия</th>
+                        <th scope="col">Цена</th>
+                        <th scope="col">Время</th>
+                        <th scope="col">Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for item in games %}
+                            <th scope="row">{{ item.title }}</th>
+                            <td>{{ item.price }} руб</td>
+                            <td>{{ item.datetime }}</td>
+                            <td>{{ item.status }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
